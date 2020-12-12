@@ -21,6 +21,10 @@
 
 namespace bustub {
 
+static const int REF_FALSE = 0;
+static const int REF_TRUE = 1;
+static const int EMPTY = 2;
+
 /**
  * ClockReplacer implements the clock replacement policy, which approximates the Least Recently Used policy.
  */
@@ -47,6 +51,14 @@ class ClockReplacer : public Replacer {
 
  private:
   // TODO(student): implement me!
+  size_t clock_hand;
+  size_t frame_size;
+  std::vector<size_t> frames;
+
+  // locks
+  std::mutex frames_latch;
+  std::mutex clock_hand_latch;
+  std::mutex frame_size_latch;
 };
 
 }  // namespace bustub
